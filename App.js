@@ -4,29 +4,46 @@ import { Button, Linking, StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
 
-  // const [name, setNmae] = useState('Colin')
-  // const [session, setSession] = useState({ year: 3, job: 'software engineering' })
-  // const [current, setCurrent] = useState(true)
-  const [counter, setCounter] = useState(0)
-
-  const onClickHandler = () => {
-    // setNmae("Deluxe and Intense are also my name!!")
-    // setSession({ year: 3.2, job: 'Nursing' })
-    // setCurrent(false)
-    setCounter(counter + 1)
-  };
   return (
     <View style={styles.container}>
-      {/* <Text style={styles.text}>{name}</Text>
-      <Text style={styles.text}>I am a {session.year} year student pursuing {session.job}</Text>
-      <Text style={styles.text}>{ current ? 'Page 1 of 2' : 'Page 2 of 2'}</Text> */}
-
-      <Text style={styles.text}>{ counter * 5 }</Text> 
-      <Button title=' Click Me ' onPress={onClickHandler}></Button>
-      <Text style={styles.text}>You have cliked { counter } times</Text> 
-
-      {/* <Button title=' Google ' onPress={() => {Linking.openURL("https://www.google.com")}}></Button> */}
-      <StatusBar style="auto" />
+      <View style={styles.row}>
+        <View style={styles.view1}>
+          <Text style={styles.text}>1</Text>
+        </View>
+        <View style={styles.view2}>
+          <Text style={styles.text}>2</Text>
+        </View>
+        <View style={styles.view3}>
+          <Text style={styles.text}>3</Text>
+        </View>
+      </View>
+      <View style={styles.row}>
+        <View style={styles.view4}>
+          <Text style={styles.text}>4</Text>
+        </View>
+      </View>
+      <View style={styles.row}>
+        <View style={styles.view5}>
+          <Text style={styles.text}>5</Text>
+        </View>
+      </View>
+      <View style={styles.big_row}>
+        <View style={styles.view6}>
+          <Text style={styles.text}>6</Text>
+        </View>
+        <View style={styles.view7}>
+          <Text style={styles.text}>7</Text>
+        </View>
+        <View style={styles.view7}>
+          <Text style={styles.text}>8</Text>
+        </View>
+        <View style={styles.view7}>
+          <Text style={styles.text}>9</Text>
+        </View>
+        <View style={styles.view7}>
+          <Text style={styles.text}>10</Text>
+        </View>
+      </View>
     </View>
   );
 }
@@ -34,14 +51,68 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    flexDirection: 'column',
+    backgroundColor: '#ffffff',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+  row: {
+    flexDirection: 'row',
+    backgroundColor: 'red',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  text: {
-    color: 'blue',
-    fontSize: 15,
-    fontWeight: 'bold',
-    margin: 10,
+
+   big_row: {
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: '#ffffff',
+    alignItems: 'flex-end',
+    justifyContent: 'center',
   },
+   
+ view1: {
+    flex: 0.5, // flex gives the ratio of the sapces among the items to fit the width or height of the
+    backgroundColor: '#00ffff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+ view2: {
+    flex: 1,
+    backgroundColor: '#ff00ff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },  
+  view3: {
+    flex: 3,
+    backgroundColor: '#ffff00',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  view4: {
+    flex: 1,
+    backgroundColor: '#ff0000',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  view5: {
+    flex: 1,
+    backgroundColor: '#0fff0f',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+   view6: {
+    flex: 1,
+    backgroundColor: '#ffffff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    
+  },
+    view7: {
+    flex: 1,
+    backgroundColor: '#0000ff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+     
 });
