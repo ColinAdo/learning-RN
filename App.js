@@ -1,5 +1,5 @@
 import { useState} from 'react';
-import { StyleSheet, Text, View, FlatList, RefreshControl } from 'react-native';
+import { StyleSheet, Text, View, FlatList, RefreshControl, SectionList } from 'react-native';
 
 export default function App() {
 
@@ -26,34 +26,113 @@ export default function App() {
     {name: 'Item 20'},
   ])
 
+  // const DATA = [
+  //   {
+  //     title: 'Title 1',
+  //     data: ['Item 1', 'Item 2'],
+  //   },
+  //   {
+  //     title: 'Title 2',
+  //     data: ['Item 2', 'Item 3'],
+  //   },
+  //   {
+  //     title: 'Title 3',
+  //     data: ['Item 4', 'Item 5'],
+  //   },
+  //   {
+  //     title: 'Title 4',
+  //     data: ['Item 6', 'Item 7'],
+  //   },
+  //   {
+  //     title: 'Title 5',
+  //     data: ['Item 8', 'Item 9'],
+  //   },
+  //   {
+  //     title: 'Title 6',
+  //     data: ['Item 10', 'Item 11'],
+  //   },
+  //   {
+  //     title: 'Title 7',
+  //     data: ['Item 12', 'Item 13'],
+  //   },
+  // ]
+
+  const [Sections, setSections] = useState([
+    {
+      title: 'Title 1',
+      data: ['Item 1', 'Item 2','Item 3'],
+    }
+  ])
   const [Refreshing, SetRefreshing] = useState(false);
 
+  const IndexIncrement = Sections.length + 1;
   const onRefresh = () => {
     SetRefreshing(true);
-    setItems([...Items, {name: 'Item 21'}])
+    // setItems([...Items, {name: 'Item 21'}])
+    setSections([...Sections,
+            {
+              title: `Title ${IndexIncrement}`,
+              data: [`Item ${IndexIncrement}`,`Item ${IndexIncrement}`, `Item ${IndexIncrement}`],
+            }
+    ]
+    )
     SetRefreshing(false);
   }
   return (
-    <FlatList 
-      // horizontal
-      keyExtractor={(item, index)=> index.toString()}
-      
-      data={Items}
+
+    <SectionList 
+      sections={Sections}
       renderItem={({ item }) => (
+           <Text style={styles.text}>{item}</Text>
+      )}
+      renderSectionHeader={({ section }) => (
         <View style={styles.row}>
-          <Text style={styles.text}>{item.name}</Text>
-        </View>
+           <Text style={styles.text}>{section.title}</Text>
+       </View>
       )}
 
-      refreshControl={
-        <RefreshControl 
-          refreshing={Refreshing}
-          onRefresh={onRefresh}
-          colors={['red', 'green']}
+    refreshControl={
+      <RefreshControl 
+        refreshing={Refreshing}
+        onRefresh={onRefresh}
+        colors={['green']}
       />
     }
-      
     />
+    // <SectionList
+    
+    //   sections={DATA}
+    //   renderItem={({ item }) => (
+    //        <Text style={styles.text}>{item}</Text>
+    //   )}
+
+    //   renderSectionHeader={({ section }) => (
+    //     <View style={styles.row}>
+    //        <Text style={styles.text}>{section.title}</Text>
+    //    </View>
+    //   )}
+
+    // />
+    // <FlatList 
+    //   // horizontal
+    //   keyExtractor={(item, index)=> index.toString()}
+      
+    //   data={Items}
+    //   renderItem={({ item }) => (
+    //     <View style={styles.row}>
+    //       <Text style={styles.text}>{item.name}</Text>
+    //     </View>
+    //   )}
+
+    //   refreshControl={
+    //     <RefreshControl 
+    //       refreshing={Refreshing}
+    //       onRefresh={onRefresh}
+    //       colors={['red', 'green']}
+    //   />
+    // }
+      
+    // />
     
   );
 }
