@@ -1,5 +1,5 @@
 import { useState} from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from 'react-native';
 
 export default function App() {
 
@@ -22,12 +22,20 @@ export default function App() {
         onChangeText={(value) => SetName(value)}
         multiline
       />
-      <Button 
+      {/* <Button 
         title={Submitted ? 'Clear' : 'Submit'}
         onPress={onPress}
         // disabled={Submitted}
-      />
-      {Submitted ? <Text>You have registered as {Name}</Text> : null}
+      /> */}
+      <TouchableOpacity
+        onPress={onPress}
+        activeOpacity={0.9}
+      >
+        <Text style={styles.button}>
+          {Submitted ? 'Clear' : 'Submit'}
+        </Text>
+      </TouchableOpacity>
+          {Submitted ? <Text>You have registered as {Name}</Text> : null}
     </View>
 
   );
@@ -54,6 +62,13 @@ const styles = StyleSheet.create({
     padding: 5,
     borderRadius: 5,
     marginBottom: 5,
+  },
+  button: {
+    backgroundColor: 'red',
+    width: 100,
+    height: 45,
+    borderRadius: 5,
+    padding: 11,
   },
      
 });
