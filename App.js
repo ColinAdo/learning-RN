@@ -1,27 +1,111 @@
-import { StatusBar } from 'expo-status-bar';
-import { Button, Linking, StyleSheet, Text, View } from 'react-native';
+import { useState} from 'react';
+import { StyleSheet, Text, View, TextInput, Pressable } from 'react-native';
 
 export default function App() {
+
+  const [Name, SetName] = useState('');
+  const [Submitted, SetSubmitted] = useState(false);
+  const onPress = () => { 
+    if (Name.length > 5) { 
+      SetSubmitted(!Submitted)
+    }
+      
+  }
+
   return (
+
+    
     <View style={styles.container}>
-      <Text style={styles.text}>Hello World</Text>
-      <Button title=' Google ' onPress={() => {Linking.openURL("https://www.google.com")}}></Button>
-      <StatusBar style="auto" />
+      <Text style={styles.text}>
+        Please write your name:
+      </Text>
+      <TextInput 
+        style={styles.textInput}
+        placeholder='e.g ado'
+        onChangeText={(value) => SetName(value)}
+        multiline
+      />
+      {/* <Button 
+        title={Submitted ? 'Clear' : 'Submit'}
+        onPress={onPress}
+        // disabled={Submitted}
+      /> */}
+      {/* <TouchableOpacity
+        onPress={onPress}
+        activeOpacity={0.9}
+      >
+        <Text style={styles.button}>
+          {Submitted ? 'Clear' : 'Submit'}
+        </Text>
+      </TouchableOpacity> */}
+
+      {/* <TouchableHighlight
+        onPress={onPress}
+        activeOpacity={0.5}
+        underlayColor={'green'}
+
+      >
+        <Text style={styles.button}>
+          {Submitted ? 'Clear' : 'Submit'}
+        </Text>
+      </TouchableHighlight> */}
+
+      {/* <TouchableWithoutFeedback
+        onPress={onPress}
+        activeOpacity={0.5}
+        underlayColor={'green'}
+
+      >
+        <Text style={styles.button}>
+          {Submitted ? 'Clear' : 'Submit'}
+        </Text>
+      </TouchableWithoutFeedback>
+          {Submitted ? <Text>You have registered as {Name}</Text> : null} */}
+      
+      <Pressable
+        onPress={onPress}
+        activeOpacity={0.5}
+        underlayColor={'green'}
+
+      >
+        <Text style={styles.button}>
+          {Submitted ? 'Clear' : 'Submit'}
+        </Text>
+      </Pressable>
+          {Submitted ? <Text>You have registered as {Name}</Text> : null}
     </View>
+
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    flexDirection: 'column',
+    backgroundColor: '#ffffff',
+    alignContent: 'center',
     alignItems: 'center',
-    justifyContent: 'center',
+    margin: 30
   },
+  
   text: {
-    color: 'blue',
-    fontSize: 15,
-    fontWeight: 'bold',
-    margin: 10,
+    fontSize: 20,
   },
+
+  textInput: {
+    width: 200,
+    borderWidth: 1,
+    alignItems: 'center',
+    padding: 5,
+    borderRadius: 5,
+    marginBottom: 5,
+  },
+  button: {
+    backgroundColor: 'red',
+    width: 100,
+    height: 45,
+    borderRadius: 5,
+    padding: 11,
+  },
+     
 });
