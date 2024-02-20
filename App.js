@@ -1,9 +1,13 @@
 import { useState} from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
 export default function App() {
 
   const [Name, SetName] = useState('');
+  const [Submitted, SetSubmitted] = useState(false);
+  const onPress = () => { 
+    SetSubmitted(!Submitted)
+  }
 
   return (
 
@@ -18,7 +22,12 @@ export default function App() {
         onChangeText={(value) => SetName(value)}
         multiline
       />
-      <Text>Your name is {Name}</Text>
+      <Button 
+        title={Submitted ? 'Clear' : 'Submit'}
+        onPress={onPress}
+        // disabled={Submitted}
+      />
+      {Submitted ? <Text>You have registered as {Name}</Text> : null}
     </View>
 
   );
@@ -44,6 +53,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 5,
     borderRadius: 5,
+    marginBottom: 5,
   },
      
 });
