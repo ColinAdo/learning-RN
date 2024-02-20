@@ -1,12 +1,15 @@
 import { useState} from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Pressable } from 'react-native';
 
 export default function App() {
 
   const [Name, SetName] = useState('');
   const [Submitted, SetSubmitted] = useState(false);
   const onPress = () => { 
-    SetSubmitted(!Submitted)
+    if (Name.length > 5) { 
+      SetSubmitted(!Submitted)
+    }
+      
   }
 
   return (
@@ -47,7 +50,7 @@ export default function App() {
         </Text>
       </TouchableHighlight> */}
 
-      <TouchableWithoutFeedback
+      {/* <TouchableWithoutFeedback
         onPress={onPress}
         activeOpacity={0.5}
         underlayColor={'green'}
@@ -57,6 +60,18 @@ export default function App() {
           {Submitted ? 'Clear' : 'Submit'}
         </Text>
       </TouchableWithoutFeedback>
+          {Submitted ? <Text>You have registered as {Name}</Text> : null} */}
+      
+      <Pressable
+        onPress={onPress}
+        activeOpacity={0.5}
+        underlayColor={'green'}
+
+      >
+        <Text style={styles.button}>
+          {Submitted ? 'Clear' : 'Submit'}
+        </Text>
+      </Pressable>
           {Submitted ? <Text>You have registered as {Name}</Text> : null}
     </View>
 
