@@ -1,5 +1,5 @@
 import { useState} from 'react';
-import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableHighlight } from 'react-native';
 
 export default function App() {
 
@@ -27,14 +27,25 @@ export default function App() {
         onPress={onPress}
         // disabled={Submitted}
       /> */}
-      <TouchableOpacity
+      {/* <TouchableOpacity
         onPress={onPress}
         activeOpacity={0.9}
       >
         <Text style={styles.button}>
           {Submitted ? 'Clear' : 'Submit'}
         </Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
+
+      <TouchableHighlight
+        onPress={onPress}
+        activeOpacity={0.5}
+        underlayColor={'green'}
+
+      >
+        <Text style={styles.button}>
+          {Submitted ? 'Clear' : 'Submit'}
+        </Text>
+      </TouchableHighlight>
           {Submitted ? <Text>You have registered as {Name}</Text> : null}
     </View>
 
